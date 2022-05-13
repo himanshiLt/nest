@@ -36,7 +36,7 @@ export class ClientTCP extends ClientProxy {
   }
 
   public connect(): Promise<any> {
-    if (this.isConnected && this.connection) {
+    if (this.connection) {
       return this.connection;
     }
     this.socket = this.createSocket();
@@ -107,6 +107,7 @@ export class ClientTCP extends ClientProxy {
   public handleClose() {
     this.isConnected = false;
     this.socket = null;
+    this.connection = undefined;
   }
 
   protected publish(
